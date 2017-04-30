@@ -7,6 +7,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { Search } from '../pages/search/search';
+import { MediaPage } from '../pages/media-page/media-page';
 
 import {HoundService } from '../providers/hound-service';
 
@@ -18,7 +19,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     ListPage,
-    Search
+    Search,
+    MediaPage
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     ListPage,
-    Search
+    Search,
+    MediaPage
   ],
   providers: [
     StatusBar,

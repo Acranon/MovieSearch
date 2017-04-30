@@ -7,6 +7,9 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Search</ion-title>
   </ion-navbar>
 
@@ -15,7 +18,7 @@
 
 <ion-content>
   <ion-card>
-    <form (ngSubmit)="movieSearch()">
+    <form (ngSubmit)="mediaSearch()">
       <ion-item>
         <ion-label>Movie:</ion-label>
         <ion-input type="text" [(ngModel)]="searchInput" name="searchInput"></ion-input>
@@ -27,8 +30,14 @@
 
   <ion-card>
 
-    <button ion-button (click)='test()'>Test</button>
+    <ion-list>
+      <ion-grid *ngFor="let media of searchData" (click)="mediaTapped($event, media)">
+        <ion-img width="180" height="270" src="{{media.object.primaryImage.metadata.small.url}}"></ion-img>
+        <h2>{{media.object.metadata.name}} ({{date}})</h2>
+      </ion-grid>
+    </ion-list>
 
+    <button ion-button (click)='test()'>Test</button>
   </ion-card>
 
 </ion-content>
