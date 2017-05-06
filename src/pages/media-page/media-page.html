@@ -6,11 +6,11 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="danger">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>mediaPage</ion-title>
+    <ion-title>{{selectedMedia.metadata.name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -18,11 +18,34 @@
 
 <ion-content>
   <ion-card>
-    <!--<h3>{{selectedMedia.metadata.name}}</h3>
-    <ion-img width="360" height="540" src="selectedMedia.object.primaryImage.medium.url"></ion-img>
-      <p>{{selectedMedia.metadata.description}}</p>-->
+    <img src="{{selectedMedia.primaryImage.metadata.medium.url}}">
+    <ion-card-content>
+      <p>{{selectedMedia.metadata.description}}</p>
+    </ion-card-content>
+  </ion-card>
 
-      <button ion-button (click)='test()'>test</button>
+  <h3 style="text-align:center;">Available Sources</h3>
+  <ion-card *ngIf="sources">
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col center col-4 *ngFor="let source of sources">
+            <a href="{{source.object.metadata.webUrl}}"><img src="{{source.object.secondaryImage.metadata.thumbnail.url}}"></a>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <h3 style="text-align:center;">Related Media</h3>
+  <ion-card padding>
+    <ion-slides loop slidesPerView="3" spaceBetween="15" autoplay="3000" *ngIf="relatedMedia">
+      <ion-slide *ngFor="let media of relatedMedia" (click)="mediaTapped(media)">
+        <img src="{{media.object.primaryImage.metadata.small.url}}">
+        <p>{{media.object.metadata.name}}</p>
+        <p>{{media.object.metadata.releaseDate * 1000 | date: 'y'}}</p>
+      </ion-slide>
+    </ion-slides>
   </ion-card>
 
 </ion-content>

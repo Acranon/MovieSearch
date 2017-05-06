@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="danger">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -20,24 +20,32 @@
   <ion-card>
     <form (ngSubmit)="mediaSearch()">
       <ion-item>
-        <ion-label>Movie:</ion-label>
-        <ion-input type="text" [(ngModel)]="searchInput" name="searchInput"></ion-input>
+        <ion-label>Search</ion-label>
+        <ion-input type="text" [(ngModel)]="searchInput" placeholder="Star Trek" name="searchInput"></ion-input>
       </ion-item>
       <br/>
-      <button ion-button type="submit" clear small>Search</button>
+      <button color="danger" margin ion-button type="submit" small>Search</button>
     </form>
   </ion-card>
 
-  <ion-card>
+  <ion-card *ngIf='searchData'>
 
-    <ion-list>
-      <ion-grid *ngFor="let media of searchData" (click)="mediaTapped($event, media)">
-        <ion-img width="180" height="270" src="{{media.object.primaryImage.metadata.small.url}}"></ion-img>
-        <h2>{{media.object.metadata.name}} ({{date}})</h2>
-      </ion-grid>
-    </ion-list>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let media of searchData" (click)="mediaTapped($event, media)">
+          <ion-thumbnail item-left>
+            <img src="{{media.object.primaryImage.metadata.thumbnail.url}}">
+          </ion-thumbnail>
+          <h2>{{media.object.metadata.name}}</h2>
+          <p>({{media.object.metadata.releaseDate * 1000 | date: 'y'}})</p>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
 
-    <button ion-button (click)='test()'>Test</button>
+    <ion-card-content>
+      <ion-slides>
+      </ion-slides>
+    </ion-card-content>
   </ion-card>
 
 </ion-content>

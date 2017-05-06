@@ -9,7 +9,8 @@ import { ListPage } from '../pages/list/list';
 import { Search } from '../pages/search/search';
 import { MediaPage } from '../pages/media-page/media-page';
 
-import {HoundService } from '../providers/hound-service';
+import { HoundService } from '../providers/hound-service';
+import { TmdbService } from '../providers/tmdb-service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -38,7 +39,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    HoundService  ]
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    HoundService,
+    TmdbService
+  ]
 })
-export class AppModule {}
+export class AppModule { }
