@@ -24,9 +24,9 @@ $font-path: "../assets/fonts";
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #D1C4E9,
+  primary:    #71B1D0,
   secondary:  #32db64,
-  danger:     #f53d3d,
+  danger:     red,
   light:      #f4f4f4,
   dark:       #222
 );
@@ -42,11 +42,16 @@ $colors: (
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
-$card-md-background-color:#673AB7;
-$card-md-header-color: #f53d3d;
+$card-md-background-color:#71B1D0;
+$card-md-header-color: red;
  $text-color: white;
  $card-md-text-color: white;
- $background-md-color: #512DA8;
+ $background-md-color: #9bcbeb;
+ $searchbar-md-background-color	: red;
+ $searchbar-md-input-background-color: red;
+ $searchbar-md-input-text-color: white;
+ $searchbar-md-input-placeholder-color: white;
+ $searchbar-md-input-search-icon-color: white;
 
 // App Windows Variables
 // --------------------------------------------------

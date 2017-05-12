@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { HoundService } from '../../providers/hound-service';
 import { TmdbService } from '../../providers/tmdb-service';
+import { Storage } from '@ionic/storage';
 
 import { MediaPage } from '../media-page/media-page';
 
@@ -10,14 +11,20 @@ import { MediaPage } from '../media-page/media-page';
   selector: 'page-search',
   templateUrl: 'search.html',
 })
-export class Search {
+export class Search implements OnInit {
 
   searchInput: string;
   searchData: any;
   mediaInfo: any;
   loading: any;
+  searchHistory: string[]=['Star Trek', 'Star Wars'];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public hound: HoundService, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public tmdb: TmdbService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public hound: HoundService, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public tmdb: TmdbService, storage: Storage) {
+    this.searchInput = '';
+  }
+
+  ngOnInit(){
+
   }
 
   mediaSearch() {
@@ -35,10 +42,6 @@ export class Search {
       alert.present();
     });
   }
-
-  // movieGrab(mediaId) {
-  //   return this.hound.mediaGrab(mediaId).subscribe(res => this.mediaInfo = res)
-  // }
 
   mediaTapped(event, media) {
     this.hound.mediaGrab(media.object.metadata.mhid).subscribe(res => {

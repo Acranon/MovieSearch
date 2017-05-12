@@ -4,12 +4,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { HoundService } from '../../providers/hound-service';
 import { TmdbService } from '../../providers/tmdb-service';
 
-/**
- * Generated class for the MediaPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+
+
 @Component({
   selector: 'page-media-page',
   templateUrl: 'media-page.html',
@@ -18,7 +14,7 @@ export class MediaPage implements OnInit {
   selectedMedia: any;
   relatedMedia: any;
   sources: any;
-  sources2: any;
+  contributors: any;
   image: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public hound: HoundService, public tmdb: TmdbService) {
@@ -35,9 +31,13 @@ export class MediaPage implements OnInit {
     })
   }
 
+  contributorsSearch() {
+    return this.hound.contributorsGrab(this.selectedMedia.metadata.mhid).subscribe(res => {
+      this.contributors = res.content;
+    })
+  }
+
   mediaTapped(media) {
-    console.log(media);
-    console.log(media.object.metadata.mhid);
     this.hound.mediaGrab(media.object.metadata.mhid).subscribe(res => {
       this.navCtrl.push(MediaPage, { res: res });
     })
@@ -46,6 +46,7 @@ export class MediaPage implements OnInit {
   ngOnInit() {
     this.relatedMediaSearch();
     this.sourceSearch();
+    this.contributorsSearch();
   }
 
 }

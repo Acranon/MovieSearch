@@ -1,9 +1,3 @@
-<!--
-  Generated template for the MediaPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar color="danger">
@@ -22,6 +16,17 @@
     <ion-card-content>
       <p>{{selectedMedia.metadata.description}}</p>
     </ion-card-content>
+  </ion-card>
+
+  <h3 style="text-align:center;">Main Contributors</h3>
+  <ion-card padding>
+    <ion-slides slidesPerView="3" spaceBetween="15">
+      <ion-slide *ngFor="let contributor of contributors">
+        <img src="{{contributor.object.primaryImage.metadata.thumbnail.url}}">
+        <p>{{contributor.object.metadata.name}}</p>
+        <p style="color: #d0d6e0;">{{contributor.context.relationships[0].role}}</p>
+      </ion-slide>
+    </ion-slides>
   </ion-card>
 
   <h3 style="text-align:center;">Available Sources</h3>

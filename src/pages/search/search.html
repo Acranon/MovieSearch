@@ -1,32 +1,23 @@
-<!--
-  Generated template for the Search page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar color="danger">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Search</ion-title>
+    <form (ngSubmit)="mediaSearch()">
+      <ion-searchbar type="text" [(ngModel)]="searchInput" name="searchInput" debounce="1"></ion-searchbar>
+    </form>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <ion-card>
-    <form (ngSubmit)="mediaSearch()">
-      <ion-item>
-        <ion-label>Search</ion-label>
-        <ion-input type="text" [(ngModel)]="searchInput" placeholder="Star Trek" name="searchInput"></ion-input>
-      </ion-item>
-      <br/>
-      <button color="danger" margin ion-button type="submit" small>Search</button>
-    </form>
-  </ion-card>
+
+  <div *ngIf="!searchData">
+    <h3 style="text-align:center; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">Welcome to Movie Search!</h3>
+    <p style="text-align:center; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">Just use the search bar above to find any movie or TV show, and it'll display which online service is streaming it.  It also shows you related media based on genres, as well as cast and crew!</p>
+  </div>
 
   <ion-card *ngIf='searchData'>
 
