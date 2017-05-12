@@ -22,7 +22,7 @@
   <ion-card padding>
     <ion-slides slidesPerView="3" spaceBetween="15">
       <ion-slide *ngFor="let contributor of contributors">
-        <img src="{{contributor.object.primaryImage.metadata.thumbnail.url}}">
+        <img style=" left: 0; right: 0; margin:0 auto; top:50%;"src="{{contributor.object.primaryImage.metadata.thumbnail.url}}">
         <p>{{contributor.object.metadata.name}}</p>
         <p style="color: #d0d6e0;">{{contributor.context.relationships[0].role}}</p>
       </ion-slide>
